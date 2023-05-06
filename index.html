@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DKA Protocol</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('dka.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    input {
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+        padding: 8px;
+    }
+
+    button {
+        display: block;
+        margin: 10px auto;
+        padding: 8px 16px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>DKA Protocol</h1>
+    <input type="number" placeholder="Glucose" id="glucose">
+    <input type="number" placeholder="Sodium" id="sodium">
+    <input type="number" placeholder="Potassium" id="potassium">
+    <input type="number" placeholder="pH" id="ph">
+    <input type="number" placeholder="Anion Gap" id="aniongap">
+    <button onclick="submitData()">Submit</button>
+</div>
+<script>
+    function submitData() {
+        // Collect input values
+        const glucose = document.getElementById('glucose').value;
+        const sodium = document.getElementById('sodium').value;
+        const potassium = document.getElementById('potassium').value;
+        const ph = document.getElementById('ph').value;
+        const aniongap = document.getElementById('aniongap').value;
+
+        // Perform necessary actions with the input data
+        console.log(glucose, sodium, potassium, ph, aniongap);
+    }
+</script>
+</body>
+</html>

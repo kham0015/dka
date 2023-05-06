@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DKA Protocol</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('dka.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    button {
+        display: block;
+        margin: 10px auto;
+        padding: 8px 16px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>DKA Protocol</h1>
+    <div class="buttons">
+        <button onclick="selectOption('initial')">Initial</button>
+        <button onclick="selectOption('maintenance')">Maintenance</button>
+    </div>
+</div>
+<script>
+    function selectOption(option) {
+        if (option === 'initial') {
+            // Perform actions for the "Initial" button
+            console.log('Initial button clicked');
+        } else if (option === 'maintenance') {
+           
+            window.location.href = 'index.html';
+        }
+    }
+</script>
+</body>
+</html>

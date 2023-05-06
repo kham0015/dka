@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DKA Protocol</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('dka.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+        display: none; /* Hide the containers by default */
+    }
+
+    #input-container {
+        display: block; /* Show the input container initially */
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    input {
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+        padding: 8px;
+    }
+
+    button {
+        display: block;
+        margin: 10px auto;
+        padding: 8px 16px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #output {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div id="input-container" class="container">
+    <h1>DKA Protocol</h1>
+    <input type="number" placeholder="Glucose" id="glucose">
+    <input type="number" placeholder="Sodium" id="sodium">
+    <input type="number" placeholder="Potassium" id="potassium">
+    <input type="number" placeholder="pH" id="ph">
+    <input type="number" placeholder="Anion Gap" id="aniongap">
+    <button onclick="submitData()">Submit</button>
+</div>
+<div id="output-container" class="container">
+    <h1>DKA Protocol</h1>
+    <div id="output"></div>
+</div>
+<script>
+    function submitData() {
+        // Collect input values
+        const glucose = parseFloat(document.getElementById('glucose').value);
+        const sodium = parseFloat(document.getElementById('sodium').value);
+        const potassium = parseFloat(document.getElementById('potassium').value);
+        const ph = parseFloat(document.getElementById('ph').value);
+        const aniongap = parseFloat(document.getElementById('aniongap').value);
+
+        let outputText = '';
+
+        if (aniongap <= 10) {
+            outputText = 'Stop DKA protocol and transition to SQ insulin.';
+        } else {
+            if (potassium < 3.3) {
+                outputText = 'Hold insulin drip.';
+            } else if (potassium > 3.3 && potassium < 5.0 && glucose > 250 && aniongap > 10 && sodium < 142) {
+                outputText = 'Continue insulin drip with normal saline with 20 mEq of KCl running at 250 mL/h.';
+            } else if (potassium > 5.0 && glucose > 250 && sodium < 142) {
+                outputText = 'Continue insulin drip with normal saline at 250 mL/h.';
+            }
+        }
+
+    // Separate output for pH condition
+    if (ph <= 6.9) {
+        outputText += ' Give 1 amp of bicarb and repeat VBG in one hour.';
+    }
+
+    // Display output
+    document.getElementById('output').innerHTML = outputText;
+
+    // Hide input container and show output container
+    document.getElementById('input-container').style.display = 'none';
+    document.getElementById('output-container').style.display = 'block';
+}
+</script>
+</body>
+</html>
